@@ -26,6 +26,7 @@ Route::get('03-signIn','welcomeController@signIn')->name('signIn-03');
 Route::get('04-login', 'loginController@index')->name('login-04');
 Route::get('05-saveRecord', 'loginController@saveRecord')->name('saveRecord-05');
 Route::get('06-getRecord', 'loginController@getRecord')->name('getRecord-06');
+Route::get('07-getRecommendation', 'loginController@getRecommendation')->name('getRecommendation-07');
 
 
 

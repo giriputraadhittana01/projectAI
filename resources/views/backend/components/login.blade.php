@@ -403,7 +403,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Food Recomendation</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -424,13 +424,13 @@
                   </div>
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
+                      <i class="fas fa-circle text-primary"></i><span id='foodName0'></span>
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
+                      <i class="fas fa-circle text-success"></i><span id='foodName1'></span>
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
+                      <i class="fas fa-circle text-info"></i><span id='foodName2'></span>
                     </span>
                   </div>
                 </div>
@@ -678,7 +678,11 @@
 </html>
 <script type='text/javascript'>
 chartData=[];
+pieData=[];
+foodName=[];
 $(document).ready(function(){ 
+  //Lk:2700;
+  //PR:2200;
   // var firstDay = new Date();  
   // var nextWeek = new Date(firstDay.getTime() + 7 * 24 * 60 * 60 * 1000);
   // console.log(nextWeek.getDate());
@@ -687,6 +691,40 @@ $(document).ready(function(){
   setChart();
 });
 
+function showPie(datacall)
+{
+  console.log("Kok Bisa");
+  var ctx = document.getElementById("myPieChart");
+  var myPieChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: foodName,
+      datasets: [{
+        data: datacall,
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
+      }],
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+      },
+      legend: {
+        display: false
+      },
+      cutoutPercentage: 80,
+    },
+  });
+}
 function showChart(datacall)
 {
   var ctx = document.getElementById("myAreaChart");
@@ -695,7 +733,7 @@ function showChart(datacall)
     data: {
       labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       datasets: [{
-        label: "Earnings",  
+        label: "Weight",  
         lineTension: 0.3,
         backgroundColor: "rgba(78, 115, 223, 0.05)",
         borderColor: "rgba(78, 115, 223, 1)",
@@ -727,7 +765,7 @@ function showChart(datacall)
           },
           gridLines: {
             display: false,
-            drawBorder: false
+            drawBorder: true
           },
           ticks: {
             maxTicksLimit: 7
@@ -739,7 +777,7 @@ function showChart(datacall)
             padding: 10,
             // Include a dollar sign in the ticks
             callback: function(value, index, values) {
-              return '$' + number_format(value);
+              return number_format(value);
             }
           },
           gridLines: {
@@ -771,7 +809,7 @@ function showChart(datacall)
         callbacks: {
           label: function(tooltipItem, chart) {
             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+            return datasetLabel + ' : ' + number_format(tooltipItem.yLabel);
           }
         }
       }
@@ -827,14 +865,40 @@ function setChart()
         chartData[i]=response[0].data[i].result;
       }
       showChart(chartData);
+      setRecomendation();
+    }  
+  });     
+}
+
+function setRecomendation(datacall)
+{
+  var times=new Date().getHours();
+  times=times>=1&&times<12?24:times>=12&&times<18?12:18;
+  $.ajax({
+		type  : "GET",
+    url   : "{{route('getRecommendation-07')}}",
+    dataType: "json",
+    data :{
+      time : times
+    },
+    success : function(response){
+      
+      for(var i=0;i<response[0].suggest.length;i++)
+      {
+        temp=(response[0].suggest[i].foodCalory/response[0].max)*100;
+        pieData[i]=temp;
+        foodName[i]=response[0].suggest[i].foodName;
+        $('#foodName'+i).html(response[0].suggest[i].foodName);
+      }
+      showPie(pieData);
     }  
   });     
 }
 function inputWeight()
 {
-  // if({!! json_encode($data[0]->weight) !!}==0&&{!! json_encode($data[0]->height) !!}==0)
-  // {
+  if({!! json_encode($data[0]->weight) !!}==0&&{!! json_encode($data[0]->height) !!}==0)
+  {
     $('#inputWeightModal').modal({backdrop: 'static', keyboard: false});
-  // }  
+  }  
 }
 </script>

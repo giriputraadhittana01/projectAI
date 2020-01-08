@@ -63,9 +63,10 @@ class loginController extends Controller
                 and body_type='.$user[0]->body_type.'
                 and gender='.$user[0]->gender.'
         ');   
-        
+        if($base==null)return "No Data";
         $result=(int)($base[0]->start_weight+$base[0]->end_weight)/2;
         $data=DB::select('select * from history where user='.Session::get('user_id').'');
+        
         for($i=0;$i<sizeof($data);$i++)
         {
             $temp=($data[$i]->weight/(int)$result)*100;
@@ -87,6 +88,36 @@ class loginController extends Controller
             'disp_error' => $bool,
             'base'       => $result,   
             'data'       => $chartData   
+        )
+    );
+    return $array;
+   }
+   public function getRecommendation(Request $request)
+   {
+    $user=DB::select('select gender,height,body_type from user where user_id='.Session::get('user_id').'');
+    $base=DB::select('
+            select * 
+                from base
+                where '.$user[0]->height.' between start_height and end_height
+                and body_type='.$user[0]->body_type.'
+                and gender='.$user[0]->gender.'
+    '); 
+    $data=DB::select('select * from history where user='.Session::get('user_id').'');
+    $type=-1;
+    if($data[sizeof($data)-1]->weight>=$base[0]->start_weight&&$data[sizeof($data)-1]->weight<=$base[0]->end_weight)$type=2;
+    else if($data[sizeof($data)-1]->weight>$base[0]->end_weight)$type=1;
+    else if($data[sizeof($data)-1]->weight<$base[0]->start_weight)$type=3;
+
+    $max = DB::table('food')
+        ->where('foodSuggest_id','=',$type)
+        ->where('times','=',$request->time)
+        ->sum('foodCalory');
+        
+    $suggest=DB::select('select foodName,foodDesc,foodCalory from food where foodSuggest_id='.$type.' and times='.$request->time.'');
+    $array = array(
+        0 => array(
+            'suggest'  => $suggest,
+            'max'      => $max,
         )
     );
     return $array;
