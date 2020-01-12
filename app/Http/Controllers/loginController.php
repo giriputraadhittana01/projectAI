@@ -36,7 +36,7 @@ class loginController extends Controller
         $msg="Record Has Been Saved";
         $bool=0;
     }
-    catch(Exception $e)
+    catch(\Exception $e)
     {
         $msg="Error";
         $bool=1;
@@ -77,7 +77,7 @@ class loginController extends Controller
         $msg="Success";
         $bool=0;
     }
-    catch(Exception $e)
+    catch(\Exception $e)
     {
         $msg="Error";
         $bool=1;

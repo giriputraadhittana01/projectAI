@@ -718,6 +718,11 @@ function clearInput()
   $('#email').val('');
   $('#password').val('');
   $('#genderRegis').val('').change();
+  //Email
+  $('#FbName').val('');
+  $('#FbEmail').val('');
+  $('#FbPhone').val('');
+  $('#FbMessage').val('');
 }
   
 function signIn()
@@ -733,7 +738,7 @@ function signIn()
     success : function(response){
       if(response[0].disp_error==1)
       {
-        // customError(response[0].msg);
+        customError(response[0].msg);
         return false;
       }
       window.location.href="{{ route('login-04') }}?id="+response[0].msg;
@@ -753,7 +758,13 @@ function sendEmail()
       message  : $('#FbMessage').val()
     },
     success : function(response){
+      if(response[0]=='F')
+      {
+        customError(response);
+        return false;
+      }
       customSuccess(response);
+      clearInput();
     }       
 	});
 }

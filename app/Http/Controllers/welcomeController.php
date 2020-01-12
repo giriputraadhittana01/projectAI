@@ -42,7 +42,7 @@ class welcomeController extends Controller
                 $msg="Account Has Been Created";
                 $bool=0;
             }
-            catch(Exception $e)
+            catch(\Exception $e)
             {   
                 $msg="Error";
                 $bool=1;
@@ -87,12 +87,21 @@ class welcomeController extends Controller
     }
     public function sendEmail(Request $request)
     {
+        $response="";
         $name       = $request->name;
         $email      = $request->email;
         $phone      = $request->phone;
         $message    = $request->message;
-        Mail::to($email)->send(new SendMailable($name,$message,$phone,$email));
-        $response='Email was sent';
+        try
+        {
+            Mail::to($email)->send(new SendMailable($name,$message,$phone,$email));
+            $response='Email was sent';
+        }
+        catch(\Exception $e)
+        {
+            $response='Failed To Send Email';
+        }
+
         return response()->json($response);
     }
 }
