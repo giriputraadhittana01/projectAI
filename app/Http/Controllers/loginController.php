@@ -112,14 +112,20 @@ class loginController extends Controller
         ->where('foodSuggest_id','=',$type)
         ->where('times','=',$request->time)
         ->sum('foodCalory');
-        
+    
     $suggest=DB::select('select foodName,foodDesc,foodCalory from food where foodSuggest_id='.$type.' and times='.$request->time.'');
     $array = array(
         0 => array(
             'suggest'  => $suggest,
-            'max'      => $max,
+            'max'      => $max
         )
     );
     return $array;
+   }
+   public function getProgress(Request $request)
+   {
+    $data=DB::select('select * from history where user='.Session::get('user_id').'');
+    $data=$data[sizeof($data)-1];
+    return response()->json($data);
    }
 }

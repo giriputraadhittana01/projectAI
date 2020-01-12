@@ -1,3 +1,13 @@
+
+$body = $("body");
+$( document ).ajaxStart(function() {
+  console.log("Loading Start");
+  $body.addClass("loading");
+}); 
+$( document ).ajaxStop(function() {
+  console.log("Loading Stop");
+  $body.removeClass("loading");
+});
 function customSuccess(msg)
 {
     Swal.fire(

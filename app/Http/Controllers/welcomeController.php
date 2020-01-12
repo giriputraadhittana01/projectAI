@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 
 class welcomeController extends Controller
 {
@@ -82,5 +84,15 @@ class welcomeController extends Controller
             )
         );
         return $array;
+    }
+    public function sendEmail(Request $request)
+    {
+        $name       = $request->name;
+        $email      = $request->email;
+        $phone      = $request->phone;
+        $message    = $request->message;
+        Mail::to($email)->send(new SendMailable($name,$message,$phone,$email));
+        $response='Email was sent';
+        return response()->json($response);
     }
 }

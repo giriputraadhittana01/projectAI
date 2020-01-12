@@ -1,3 +1,30 @@
+<style type='text/css'>
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +35,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Freelancer - Start Bootstrap Theme</title>
+  <title>GOLDY PROJECT</title>
 
   <!-- Custom fonts for this theme -->
   
@@ -19,7 +46,7 @@
   <!-- Theme CSS -->
   <link href="assets/css/freelancer.min.css" rel="stylesheet">
   <script src="assets/js/sweetalert2.min.js"></script>
-  <script src="assets/GlobalFunc/script.js"></script>
+ 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
   
 </head>
@@ -184,7 +211,7 @@
     <div class="container">
 
       <!-- Contact Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Feedback</h2>
 
       <!-- Icon Divider -->
       <div class="divider-custom">
@@ -199,41 +226,41 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+          {{-- <form name="sentMessage" id="contactForm" novalidate="novalidate"> --}}
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Name</label>
-                <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                <input class="form-control" id="FbName" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Email Address</label>
-                <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
+                <input class="form-control" id="FbEmail" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Phone Number</label>
-                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                <input class="form-control" id="FbPhone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Message</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                <textarea class="form-control" id="FbMessage" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+              <button type="submit" class="btn btn-primary btn-xl" onclick='sendEmail()'>Send</button>
             </div>
-          </form>
+          {{-- </form> --}}
         </div>
       </div>
 
@@ -545,9 +572,11 @@
   <script src="assets/js/freelancer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
   <script src="assets/js/jquery.mask.js"></script>
+  <script src="assets/GlobalFunc/script.js"></script>
+
 
 </body>
-
+<div class="modal">
 </html>
 <script type='text/javascript'>
 $(document).ready(function(){
@@ -555,6 +584,7 @@ $(document).ready(function(){
   $('#height').mask('000');
   setAge();
 });
+
 function setAge()
 {
   strAge="";
@@ -639,6 +669,11 @@ function signUp()
     customError('Gender Tidak Valid');
     return false;
   }
+  if($("#bodyTypeRegis").val()=="") 
+  {
+    customError('Body Type Tidak Valid');
+    return false;
+  }
   if($("#ageRegis").val()=="") 
   {
     customError('Umur Tidak Valid');
@@ -698,12 +733,28 @@ function signIn()
     success : function(response){
       if(response[0].disp_error==1)
       {
-        customError(response[0].msg);
+        // customError(response[0].msg);
         return false;
       }
-      window.location="{{ route('login-04') }}?id="+response[0].msg;
+      window.location.href="{{ route('login-04') }}?id="+response[0].msg;
     }       
 	});
 }
-  
+function sendEmail()
+{ 
+  $.ajax({
+		type  : "GET",
+    url   : "{{route('sendEmail-09')}}",
+    dataType: "json",
+    data :{
+      name     : $('#FbName').val(),
+      email    : $('#FbEmail').val(),
+      phone    : $('#FbPhone').val(),
+      message  : $('#FbMessage').val()
+    },
+    success : function(response){
+      customSuccess(response);
+    }       
+	});
+}
 </script>
