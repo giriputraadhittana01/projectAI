@@ -30,7 +30,9 @@ Route::get('06-getRecord', 'loginController@getRecord')->name('getRecord-06');
 Route::get('07-getRecommendation', 'loginController@getRecommendation')->name('getRecommendation-07');
 Route::get('08-getProgress', 'loginController@getProgress')->name('getProgress-08');
 Route::get('10-getDate', 'loginController@getDate')->name('getDate-10');
-//Email
+Route::get('11-setTable', 'loginController@setTable')->name('setTable-11');
+
+
 
 
 

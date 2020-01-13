@@ -251,7 +251,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" onclick='setProfile()'>
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -601,7 +601,22 @@
       </div>
     </div>
   </div>
-
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        </div>
+        <div class="modal-body">
+          <table id='fixedTable' class='table'>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="#" data-dismiss="modal">OK</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Bootstrap core JavaScript-->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -674,13 +689,17 @@ $(document).ready(function(){
 });
 function getDate()
 {
+  // console.log("Hello buddys");
   $.ajax({
 		type  : "GET",
     url   : "{{route('getDate-10')}}",
     dataType: "json",
     success : function(response){
-      dateLast=new Date(response.date);
-      dateLast=dateLast.getDate();
+      if(response[0]!='N')
+      {
+        dateLast=new Date(response.date);
+        dateLast=dateLast.getDate();
+      }
       inputWeight();
       setChart();
     }       
@@ -725,7 +744,7 @@ function showChart(datacall)
   var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"],
       datasets: [{
         label: "Weight",  
         lineTension: 0.3,
@@ -915,5 +934,43 @@ function inputWeight()
 function dashBoard()
 { 
   window.location.href="{{ route('login-04') }}?id="+"{{Session::get('user_id')}}";
+}
+function setProfile()
+{
+  $.ajax({
+		type  : "GET",
+    url   : "{{route('setTable-11')}}",
+    dataType: "json",
+    success : function(response){
+      $('#profileModal').modal({backdrop: 'static', keyboard: false});
+      setTable(response);
+    }       
+	});
+}
+function setTable(datacall)
+{
+  console.log(datacall);
+  strDatatableHtml="";
+  strDatatableHtml+="<tr>"+
+                      "<td>"+"Weight"+"</td>"+
+                      "<td>"+"Height"+"</td>"+
+                      "<td>"+"Date"+"</td>"+
+                    "<tr>";
+  for(var i=0;i<datacall.length;i++)
+  {
+    strDatatableHtml+="<tr id='row"+i+"' onclick='highlight("+i+")'>"+
+                        "<td>"+datacall[i].weight+"</td>"+
+                        "<td>"+datacall[i].height+"</td>"+
+                        "<td>"+datacall[i].date+"</td>"+
+                      "<tr>";
+  }
+  $('#fixedTable').html(strDatatableHtml);
+}   
+prevRow=-1;
+function highlight(idx)
+{
+  if(prevRow != -1) $("#row"+prevRow).removeClass("bg-warning");
+    $("#row"+idx).addClass("bg-warning");
+    prevRow = idx;
 }
 </script>

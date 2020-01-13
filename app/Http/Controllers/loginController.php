@@ -131,6 +131,13 @@ class loginController extends Controller
    public function getDate(Request $request)
    {
     $data=DB::select('select date from history where user='.Session::get('user_id').'');
+    $bool=($data==null)?1:0;
+    if($bool==1)return response()->json("No Data");
     return response()->json($data[sizeof($data)-1]);
+   }
+   public function setTable(Request $request)
+   {
+    $data=DB::select('select * from history where user='.Session::get('user_id').'');
+    return response()->json($data);
    }
 }
