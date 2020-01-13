@@ -8,7 +8,7 @@
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('http://i.stack.imgur.com/FhHRx.gif') 
+                url('https://flevix.com/wp-content/uploads/2019/07/Ring-Loading.gif') 
                 50% 50% 
                 no-repeat;
 }
@@ -574,9 +574,9 @@ body.loading .modal {
   <script src="assets/js/jquery.mask.js"></script>
   <script src="assets/GlobalFunc/script.js"></script>
 
-
+  <div class="modal">
 </body>
-<div class="modal">
+
 </html>
 <script type='text/javascript'>
 $(document).ready(function(){

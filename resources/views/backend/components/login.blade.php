@@ -137,7 +137,7 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            {{-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
@@ -239,7 +239,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> --}}
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -255,14 +255,14 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                {{-- <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Activity Log
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -667,12 +667,25 @@ foodName=[];
 base="";
 dateNow=new Date();
 dateNow=dateNow.getDate();
+dateLast="";
 $(document).ready(function(){ 
   $('#weight').mask('000');
-  inputWeight();
-  setChart();
+  getDate();
 });
-
+function getDate()
+{
+  $.ajax({
+		type  : "GET",
+    url   : "{{route('getDate-10')}}",
+    dataType: "json",
+    success : function(response){
+      dateLast=new Date(response.date);
+      dateLast=dateLast.getDate();
+      inputWeight();
+      setChart();
+    }       
+	});
+}
 function showPie(datacall)
 {
   var ctx = document.getElementById("myPieChart");
@@ -836,7 +849,7 @@ function setChart()
 		type  : "GET",
     url   : "{{route('getRecord-06')}}",
     dataType: "json",
-    success : function( response){
+    success : function(response){
       if(response[0].disp_error==1)
       {
         customError(response[0].msg);
@@ -853,7 +866,6 @@ function setChart()
     }  
   });     
 }
-dateLast="";
 function setProgressBar()
 {
   $.ajax({
@@ -861,8 +873,6 @@ function setProgressBar()
     url   : "{{route('getProgress-08')}}",
     dataType: "json",
     success : function(response){
-      dateLast=new Date(response.date);
-      dateLast=dateLast.getDate();
       $('#progressBar').width(response.weight + "%").attr('aria-valuenow', response.weight);
       $('#progressBar').width(base + "%").attr('aria-valuemax', base);
       $('#progressBar').width((response.weight/base)*100+'%');

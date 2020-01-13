@@ -128,4 +128,9 @@ class loginController extends Controller
     $data=$data[sizeof($data)-1];
     return response()->json($data);
    }
+   public function getDate(Request $request)
+   {
+    $data=DB::select('select date from history where user='.Session::get('user_id').'');
+    return response()->json($data[sizeof($data)-1]);
+   }
 }
