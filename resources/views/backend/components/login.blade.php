@@ -793,7 +793,7 @@ function showChart(datacall)
     data: {
       labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"],
       datasets: [{
-        label: "Weight",  
+        label: "Progress",  
         lineTension: 0.3,
         backgroundColor: "rgba(78, 115, 223, 0.05)",
         borderColor: "rgba(78, 115, 223, 1)",
@@ -869,7 +869,7 @@ function showChart(datacall)
         callbacks: {
           label: function(tooltipItem, chart) {
             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-            return datasetLabel + ' : ' + number_format(tooltipItem.yLabel);
+            return datasetLabel + ' : ' + number_format(tooltipItem.yLabel)+'/100';
           }
         }
       }
