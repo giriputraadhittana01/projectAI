@@ -12,7 +12,6 @@
                 50% 50% 
                 no-repeat;
 }
-
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
 body.loading .modal {
@@ -54,7 +53,7 @@ body.loading .modal {
 <body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style="background-color:#584b4f;">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">GOLDY</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +77,7 @@ body.loading .modal {
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead bg-primary text-white text-center">
+  <header class="masthead text-white text-center" style="background-color:#353537;">
     <div class="container d-flex align-items-center flex-column">
 
       <h2 class="page-section-heading text-center text-uppercase text-white">CHECK YOUR BODY</h2>&nbsp;&nbsp;
@@ -103,7 +102,7 @@ body.loading .modal {
               <option value='2'>Large</option>
             </select>
           </div>
-          <button class="btn btn-info btn-block my-4" onclick="getBodyInformation()">CHECK</button>        
+          <button class="btn btn-warning btn-block my-4" style='color:white;'onclick="getBodyInformation()">CHECK</button>        
         </form>
       </div>
       
@@ -145,7 +144,7 @@ body.loading .modal {
             <p class="h4 mb-4"></p>
             <input type="text" id="emailLogin" class="form-control mb-4" placeholder="E-mail">
             <input type="password" id="passwordLogin" class="form-control mb-4" placeholder="Password">
-            <button class="btn btn-info btn-block my-4" type="submit" onclick='signIn()'>Sign In</button>
+            <button class="btn btn-warning btn-block my-4" style="color:white;"type="submit" onclick='signIn()'>Sign In</button>
             <p>Not a member?
                 <a class="js-scroll-trigger" href="#about">Register</a>
             </p>
@@ -156,7 +155,7 @@ body.loading .modal {
   </section>
 
   <!-- About Section -->
-  <section class="page-section bg-primary text-white mb-0" id="about">
+  <section class="page-section text-white mb-0" id="about" style="background-color:#353537;">
     <div class="container">
 
       <!-- About Section Heading -->
@@ -199,7 +198,7 @@ body.loading .modal {
                 <option value="">Age</option>
               </select>
             </div>
-            <button class="btn btn-info btn-block my-4" type="submit" onclick='signUp()'>Sign Up</button>        
+            <button class="btn btn-warning btn-block my-4" style='color:white;'type="submit" onclick='signUp()'>Sign Up</button>        
         </form>
         </div>
 
@@ -258,7 +257,7 @@ body.loading .modal {
             <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl" onclick='sendEmail()'>Send</button>
+              <button type="submit" class="btn btn-warning btn-xl" style='color:white;'onclick='sendEmail()'>Send</button>
             </div>
           {{-- </form> --}}
         </div>
@@ -268,39 +267,39 @@ body.loading .modal {
   </section>
 
   <!-- Footer -->
-  <footer class="footer text-center">
+  <footer class="footer text-center" style='background-color:#efeae1;color:black;'>
     <div class="container">
       <div class="row">
 
         <!-- Footer Location -->
         <div class="col-lg-4 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Location</h4>
-          <p class="lead mb-0">2215 John Daniel Drive
-            <br>Clark, MO 65243</p>
+          <p class="lead mb-0">Bina Nusantara University
+            <br>Jl. Raya Kb. Jeruk No.27, Kb. Jeruk, Kec. Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530</p>
         </div>
 
         <!-- Footer Social Icons -->
         <div class="col-lg-4 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Around the Web</h4>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://id-id.facebook.com/">
             <i class="fab fa-fw fa-facebook-f"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/?lang=id">
             <i class="fab fa-fw fa-twitter"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/login">
             <i class="fab fa-fw fa-linkedin-in"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://dribbble.com/">
             <i class="fab fa-fw fa-dribbble"></i>
           </a>
         </div>
 
         <!-- Footer About Text -->
         <div class="col-lg-4">
-          <h4 class="text-uppercase mb-4">About Freelancer</h4>
-          <p class="lead mb-0">Freelance is a free to use, MIT licensed Bootstrap theme created by
-            <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+          <h4 class="text-uppercase mb-4">About Us</h4>
+          <p class="lead mb-0">We Are Students At
+            <a href="https://binus.ac.id/">Bina Nusantara University</a>.</p>
         </div>
 
       </div>
@@ -310,7 +309,7 @@ body.loading .modal {
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Your Website 2019</small>
+      <small>Copyright &copy; GOLDY 2020</small>
     </div>
   </section>
 

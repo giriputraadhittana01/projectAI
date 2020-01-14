@@ -31,6 +31,8 @@ Route::get('07-getRecommendation', 'loginController@getRecommendation')->name('g
 Route::get('08-getProgress', 'loginController@getProgress')->name('getProgress-08');
 Route::get('10-getDate', 'loginController@getDate')->name('getDate-10');
 Route::get('11-setTable', 'loginController@setTable')->name('setTable-11');
+Route::get('12-setProfile', 'loginController@setProfile')->name('setProfile-12');
+
 
 
 

@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background:#584b4f;">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -63,14 +63,14 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" onclick='setProfile()'>Profile</a>
+            <a class="collapse-item" onclick='setHistory()'>History</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
@@ -84,7 +84,7 @@
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -445,7 +445,7 @@
             <div class="col-lg-6 mb-4">
 
               <!-- Project Card Example -->
-              <div class="card shadow mb-4">
+              <div class="card shadow mb-4" style="width:600px;">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Weight Bar</h6>
                 </div>
@@ -458,63 +458,69 @@
               </div>
 
               <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
+              {{-- <div class="row"> --}}
+                {{-- <div class="card shadow mb-4" style="width:600px;">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Recommended Exercise</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            Plank
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="https://www.idntimes.com/health/fitness/serly-mutia/5-variasi-plank-buat-kamu-yang-masih-pemula-c1c2/full">Go</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                          
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="">Go</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                          
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="">Go</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-warning text-white shadow">
+                        <div class="card-body">
+                          
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="">Go</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                          
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="">Go</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                      <div class="card bg-secondary text-white shadow">
+                        <div class="card-body">
+                          
+                          <div class="text-white-50 small"><a style='color:white;text-decoration:none;'href="">Go</a></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+              </div> --}}
+            {{-- </div> --}}
 
             <div class="col-lg-6 mb-4">
 
               <!-- Illustrations -->
-              <div class="card shadow mb-4">
+              {{-- <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                 </div>
@@ -525,7 +531,7 @@
                   <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
                   <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
                 </div>
-              </div>
+              </div> --}}
 
               <!-- Approach -->
               {{-- <div class="card shadow mb-4">
@@ -551,7 +557,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; GOLDY 2020</span>
           </div>
         </div>
       </footer>
@@ -601,6 +607,22 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">History</h5>
+        </div>
+        <div class="modal-body">
+          <table id='fixedTable' class='table'>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="#" data-dismiss="modal">OK</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -608,7 +630,32 @@
           <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
         </div>
         <div class="modal-body">
-          <table id='fixedTable' class='table'>
+          <table id='fixedTableModal' class='table'>
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td><span id='profileName'></td>
+            </tr>
+            <tr>
+              <td>Age</td>
+              <td>:</td>
+              <td><span id='profileAge'></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>:</td>
+              <td><span id='profileEmail'></td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td>:</td>
+              <td><span id='profileWeight'></td>
+            </tr>
+            <tr>
+              <td>Height</td>
+              <td>:</td>
+              <td><span id='profileHeight'></td>
+            </tr>
           </table>
         </div>
         <div class="modal-footer">
@@ -885,6 +932,8 @@ function setChart()
     }  
   });     
 }
+weightTemp="";
+heightTemp="";
 function setProgressBar()
 {
   $.ajax({
@@ -892,6 +941,8 @@ function setProgressBar()
     url   : "{{route('getProgress-08')}}",
     dataType: "json",
     success : function(response){
+      weightTemp=response.weight;
+      heightTemp=response.height;
       $('#progressBar').width(response.weight + "%").attr('aria-valuenow', response.weight);
       $('#progressBar').width(base + "%").attr('aria-valuemax', base);
       $('#progressBar').width((response.weight/base)*100+'%');
@@ -916,7 +967,7 @@ function setRecomendation(datacall)
       {
         temp=(response[0].suggest[i].foodCalory/response[0].max)*100;
         pieData[i]=temp;
-        foodName[i]=response[0].suggest[i].foodName;
+        foodName[i]=response[0].suggest[i].foodName+' '+response[0].suggest[i].foodDesc;
         $('#foodName'+i).html(response[0].suggest[i].foodName);
       }
       showPie(pieData);
@@ -935,21 +986,20 @@ function dashBoard()
 { 
   window.location.href="{{ route('login-04') }}?id="+"{{Session::get('user_id')}}";
 }
-function setProfile()
+function setHistory()
 {
   $.ajax({
 		type  : "GET",
     url   : "{{route('setTable-11')}}",
     dataType: "json",
     success : function(response){
-      $('#profileModal').modal({backdrop: 'static', keyboard: false});
+      $('#historyModal').modal({backdrop: 'static', keyboard: false});
       setTable(response);
     }       
 	});
 }
 function setTable(datacall)
 {
-  console.log(datacall);
   strDatatableHtml="";
   strDatatableHtml+="<tr>"+
                       "<td>"+"Weight"+"</td>"+
@@ -969,8 +1019,24 @@ function setTable(datacall)
 prevRow=-1;
 function highlight(idx)
 {
-  if(prevRow != -1) $("#row"+prevRow).removeClass("bg-warning");
-    $("#row"+idx).addClass("bg-warning");
-    prevRow = idx;
+  $("#row"+prevRow).removeClass("bg-warning");
+  $("#row"+idx).addClass("bg-warning");
+  prevRow = idx;
+}
+function setProfile()
+{
+  $.ajax({
+		type  : "GET",
+    url   : "{{route('setProfile-12')}}",
+    dataType: "json",
+    success : function(response){
+      $('#profileName').html(response[0].username);
+      $('#profileAge').html(response[0].age);
+      $('#profileEmail').html(response[0].email);
+      $('#profileWeight').html(weightTemp);
+      $('#profileHeight').html(heightTemp);
+      $('#profileModal').modal({backdrop: 'static', keyboard: false});(response);
+    }       
+	});
 }
 </script>

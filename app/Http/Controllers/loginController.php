@@ -140,4 +140,9 @@ class loginController extends Controller
     $data=DB::select('select * from history where user='.Session::get('user_id').'');
     return response()->json($data);
    }
+   public function setProfile(Request $request)
+   {
+    $data=DB::select('select * from user where user_id='.Session::get('user_id').'');
+    return response()->json($data);
+   }
 }
